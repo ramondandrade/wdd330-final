@@ -252,7 +252,7 @@ function attachEvents(hash) {
         
         document.querySelectorAll('.city-btn').forEach(btn => btn.classList.remove('active'));
         setTimeout(() => {
-            document.querySelector(`.city-btn[data-city="${lastCity}"]`).classList.add('active');
+            document.querySelector(`.city-btn[data-city="${city}"]`).classList.add('active');
         }, 100);
 
         const cityData = cities.find(c => c.city.toLowerCase() === city.toLowerCase());
