@@ -1,7 +1,7 @@
 import { getLocalStorage, setLocalStorage } from '/js/utils.mjs';
 
 export function getFavorites() {
-  return getLocalStorage('travelBuddyFavorites') || [];
+  return JSON.parse(getLocalStorage('travelBuddyFavorites') || '[]');
 }
 
 export function saveFavorite(item) {

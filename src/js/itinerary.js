@@ -1,7 +1,7 @@
 import { getLocalStorage, setLocalStorage } from '/js/utils.mjs';
 
 export function getItinerary() {
-  return getLocalStorage('travelBuddyItinerary') || [];
+  return JSON.parse(getLocalStorage('travelBuddyItinerary') || '[]');
 }
 
 export function addToItinerary(item) {
