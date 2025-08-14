@@ -1,8 +1,8 @@
+import { getLocalStorage, setLocalStorage } from '/js/utils.mjs';
 import { getItinerary, addToItinerary, removeFromItinerary } from '/js/itinerary.js';
 import { cities } from '/js/data.js';
 import { renderMap, getUserLocation } from '/js/map.js';
 import { getFavorites, saveFavorite, removeFavorite } from '/js/favorite.js';
-// --- FAVORITE UTILS ---
 
 function renderFavCard(item, type, cityName) {
   const favs = getFavorites();
@@ -178,15 +178,8 @@ function renderPage(hash) {
 async function fetchGooglePlaces(city, type) {
   const apiKey = 'AIzaSyARGcrrBKa8HWQQBU3BHxSjSDMh4r8ZYrc';
   const query = `${type} in ${city}`;
-  const localStorageKey = `googlePlaces_${type}_${city}`;
 
   try {
-    // Check if data is already in localStorage
-    const storedData = localStorage.getItem(localStorageKey);
-    if (storedData) {
-      console.log(`Loading ${type} for ${city} from localStorage`);
-      return JSON.parse(storedData);
-    }
 
     const response = await fetch('https://places.googleapis.com/v1/places:searchText', {
       method: 'POST',
@@ -205,10 +198,6 @@ async function fetchGooglePlaces(city, type) {
         formattedAddress: result.formattedAddress,
         rating: result.rating
       }));
-
-      // Store the data in localStorage
-      localStorage.setItem(localStorageKey, JSON.stringify(results));
-      console.log(`Storing ${type} for ${city} in localStorage`);
 
       return results;
     } else {
@@ -372,12 +361,12 @@ function attachEvents(hash) {
 
 // Function to get the last selected city from local storage
 function getLastSelectedCity() {
-  return localStorage.getItem('lastSelectedCity') || null;
+  return getLocalStorage('lastSelectedCity') || null;
 }
 
 // Function to set the last selected city in local storage
 function setLastSelectedCity(city) {
-  localStorage.setItem('lastSelectedCity', city);
+  setLocalStorage('lastSelectedCity', city);
 }
 
 window.addEventListener('hashchange', () => renderPage(location.hash));

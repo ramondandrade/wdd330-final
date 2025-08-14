@@ -1,18 +1,19 @@
-// Utility for localStorage favorites
+import { getLocalStorage, setLocalStorage } from '/js/utils.mjs';
+
 export function getFavorites() {
-  return JSON.parse(localStorage.getItem('travelBuddyFavorites') || '[]');
+  return getLocalStorage('travelBuddyFavorites') || [];
 }
 
 export function saveFavorite(item) {
   const favs = getFavorites();
   if (!favs.find(f => f.name === item.name)) {
     favs.push(item);
-    localStorage.setItem('travelBuddyFavorites', JSON.stringify(favs));
+    setLocalStorage('travelBuddyFavorites', favs);
   }
 }
 
 export function removeFavorite(name) {
   let favs = getFavorites();
   favs = favs.filter(f => f.name !== name);
-  localStorage.setItem('travelBuddyFavorites', JSON.stringify(favs));
+  setLocalStorage('travelBuddyFavorites', favs);
 }

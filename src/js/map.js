@@ -1,6 +1,3 @@
-// This file will contain Google Maps and location API integration for the interactive map and location-based search.
-// For demo, a static map is shown. Replace with Google Maps API for production.
-
 export function renderMap(lat = 35.6895, lng = 139.6917, label = 'Tokyo') {
   return `<div class="map"><iframe width="100%" height="350" frameborder="0" style="border:0" 
     src="https://www.openstreetmap.org/export/embed.html?bbox=${lng-0.05}%2C${lat-0.05}%2C${lng+0.05}%2C${lat+0.05}&layer=mapnik&marker=${lat}%2C${lng}" allowfullscreen></iframe>
@@ -8,7 +5,6 @@ export function renderMap(lat = 35.6895, lng = 139.6917, label = 'Tokyo') {
 }
 
 export async function getUserLocation() {
-  // Use IP-API for demo
   try {
     const res = await fetch('https://free.freeipapi.com/api/json/');
     return await res.json();

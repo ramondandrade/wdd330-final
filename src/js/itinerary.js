@@ -1,18 +1,19 @@
-// Simple itinerary planner using localStorage
+import { getLocalStorage, setLocalStorage } from '/js/utils.mjs';
+
 export function getItinerary() {
-  return JSON.parse(localStorage.getItem('travelBuddyItinerary') || '[]');
+  return getLocalStorage('travelBuddyItinerary') || [];
 }
 
 export function addToItinerary(item) {
   const itin = getItinerary();
   if (!itin.find(i => i.name === item.name)) {
     itin.push(item);
-    localStorage.setItem('travelBuddyItinerary', JSON.stringify(itin));
+    setLocalStorage('travelBuddyItinerary', itin);
   }
 }
 
 export function removeFromItinerary(name) {
   let itin = getItinerary();
   itin = itin.filter(i => i.name !== name);
-  localStorage.setItem('travelBuddyItinerary', JSON.stringify(itin));
+  setLocalStorage('travelBuddyItinerary', itin);
 }
