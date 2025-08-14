@@ -313,16 +313,16 @@ function attachEvents(hash) {
         document.getElementById('findNearMe').addEventListener('click', async () => {
           document.getElementById('mapContainer').innerHTML = '<p>Detecting your location...</p>';
           const loc = await getUserLocation();
-          if (loc && loc.city) {
+          if (loc && loc.cityName) {
 
             document.getElementById('mapContainer').innerHTML = '';
 
-            const val = loc.city.toLowerCase();
+            const val = loc.cityName.toLowerCase();
             document.getElementById('searchInput').value = val;
             const [attractions, restaurants, foods] = await Promise.all([
               fetchGooglePlaces(val, 'attractions'),
               fetchGooglePlaces(val, 'restaurants'),
-              //fetchGooglePlaces(city, 'foods')
+              //fetchGooglePlaces(val, 'foods')
             ]);
 
             document.getElementById('searchResults').innerHTML =

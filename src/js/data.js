@@ -1,4 +1,3 @@
-// Data for 10 largest cities (sample, can be expanded)
 export const cities = [
   {
     city: "Tokyo",

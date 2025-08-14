@@ -10,7 +10,7 @@ export function renderMap(lat = 35.6895, lng = 139.6917, label = 'Tokyo') {
 export async function getUserLocation() {
   // Use IP-API for demo
   try {
-    const res = await fetch('http://ip-api.com/json/');
+    const res = await fetch('https://free.freeipapi.com/api/json/');
     return await res.json();
   } catch (e) {
     return null;
